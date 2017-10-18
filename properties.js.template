@@ -1,0 +1,4 @@
+modules.export = {
+    kafkaHost: 'localhost:9092',
+    kafkaBroker: 'localhost:2181'
+};
