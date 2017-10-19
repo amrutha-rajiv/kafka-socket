@@ -21,7 +21,9 @@ producer.send([{
 
 producer.on('error', function (err) {});
 var checkAndAddTopic = function(topic, cb) {
-    var client = new kafka.Client(properties.kafkaBroker);
+    var client = new kafka.KafkaClient({
+        kafkaHost: properties.kafkaHost
+    });
     client.once('connect', function () {
         client.loadMetadataForTopics([], function (error, results) {
         if (error) {
@@ -63,7 +65,9 @@ var KafkaLocal = {
     getConsumer: function(id, cb) {
         var newConsumer;
         checkAndAddTopic(id, function() {
-            var client = new kafka.Client(properties.kafkaBroker);
+            var client = new kafka.KafkaClient({
+                kafkaHost: properties.kafkaHost
+            });
             newConsumer = new kafka.Consumer(
                 client,
                 [
@@ -73,7 +77,7 @@ var KafkaLocal = {
                     }
                 ],
                 {
-                    groupId: `kafka-node-group-${id}`          
+                    groupId: 'kafka-node-group'          
                 }
             );
             cb(newConsumer);                

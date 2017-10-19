@@ -11,3 +11,5 @@ npm install && npm start
 npm install -g http-server && http-server .
 ```
 Navigate to http://localhost:8080/client1/index.html and http://localhost:8080/client2/index.html to test.
+
+Disclaimer: This kafka-socket paradigm used in the project by which there is 1 consumer for every socket connection is not recommended for production applications.
